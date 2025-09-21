@@ -107,16 +107,6 @@ export default function BudgetForm({ onSubmit }: BudgetFormProps) {
           </svg>
           <span>Ihr Budget wurde erfolgreich gespeichert!</span>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            localStorage.removeItem("budget-submitted");
-            setHasSubmitted(false);
-          }}
-          className="btn btn-outline btn-sm mt-4"
-        >
-          Neues Budget eingeben (Reset)
-        </button>
       </div>
     </div>
   );
