@@ -35,35 +35,35 @@ export default function IdeaForm({ addIdea }: { addIdea: any }) {
               <label htmlFor="name" className="label">
                 <span className="label-text">Dein Name</span>
               </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            className="input input-bordered w-full"
-            placeholder="Wie heisst du?"
-          />
-        </div>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                className="input input-bordered w-full"
+                placeholder="Wie heisst du?"
+              />
+            </div>
 
-        <div className="form-control">
-          <label htmlFor="idea" className="label">
-            <span className="label-text">Deine Idee</span>
-          </label>
-          <textarea
-            id="idea"
-            name="idea"
-            required
-            rows={4}
-            className="textarea textarea-bordered w-full"
-            placeholder="Teile deine Idee mit..."
-          />
-        </div>
+            <div className="form-control">
+              <label htmlFor="idea" className="label">
+                <span className="label-text">Deine Idee</span>
+              </label>
+              <textarea
+                id="idea"
+                name="idea"
+                required
+                rows={4}
+                className="textarea textarea-bordered w-full"
+                placeholder="Teile deine Idee mit..."
+              />
+            </div>
 
-        {formData.error && (
-          <div className="alert alert-error">
-            <span>{formData.error}</span>
-          </div>
-        )}
+            {formData.error && (
+              <div className="alert alert-error">
+                <span>{formData.error}</span>
+              </div>
+            )}
 
             <button type="submit" className="btn btn-primary w-full">
               Idee hinzufügen
@@ -73,7 +73,10 @@ export default function IdeaForm({ addIdea }: { addIdea: any }) {
       </div>
 
       {showCelebration && (
-        <SuccessCelebration show={showCelebration} onClose={handleCelebrationClose} />
+        <SuccessCelebration
+          show={showCelebration}
+          onClose={handleCelebrationClose}
+        />
       )}
     </>
   );

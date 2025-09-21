@@ -9,11 +9,11 @@ interface SuccessCelebrationProps {
   message?: string;
 }
 
-export default function SuccessCelebration({ 
-  show, 
-  onClose, 
+export default function SuccessCelebration({
+  show,
+  onClose,
   title = "Herzlichen Glückwunsch! 🎉",
-  message = "Ihr Budget wurde erfolgreich eingereicht!"
+  message = "Ihr Budget wurde erfolgreich eingereicht!",
 }: SuccessCelebrationProps) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -24,7 +24,7 @@ export default function SuccessCelebration({
       const timer = setTimeout(() => {
         handleClose();
       }, 4000);
-      
+
       return () => clearTimeout(timer);
     }
   }, [show]);
@@ -41,44 +41,43 @@ export default function SuccessCelebration({
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className={`
           fixed inset-0 z-[9998] bg-black/50 backdrop-blur-sm
           transition-opacity duration-500
-          ${isVisible ? 'opacity-100' : 'opacity-0'}
+          ${isVisible ? "opacity-100" : "opacity-0"}
         `}
         onClick={handleClose}
       />
-      
+
       {/* Success Modal */}
-      <div 
+      <div
         className={`
           fixed inset-0 z-[9999] flex items-center justify-center p-4
           transition-all duration-500 ease-out
-          ${isVisible 
-            ? 'scale-100 opacity-100' 
-            : 'scale-75 opacity-0'
-          }
+          ${isVisible ? "scale-100 opacity-100" : "scale-75 opacity-0"}
         `}
       >
         <div className="relative max-w-md w-full">
           {/* Success Image with Animation */}
           <div className="relative mb-6 flex justify-center">
-            <div className={`
+            <div
+              className={`
               transform transition-all duration-700 ease-out
-              ${isVisible ? 'scale-100 rotate-0' : 'scale-50 rotate-12'}
-            `}>
-              <img 
-                src="/sucess.avif" 
+              ${isVisible ? "scale-100 rotate-0" : "scale-50 rotate-12"}
+            `}
+            >
+              <img
+                src="/sucess.avif"
                 alt="Success Celebration"
                 className="w-48 h-48 object-cover rounded-full shadow-2xl animate-bounce"
                 style={{
-                  animationDuration: '1s',
-                  animationIterationCount: '3'
+                  animationDuration: "1s",
+                  animationIterationCount: "3",
                 }}
               />
             </div>
-            
+
             {/* Sparkle Effects */}
             <div className="absolute inset-0 pointer-events-none">
               {[...Array(8)].map((_, i) => (
@@ -92,7 +91,7 @@ export default function SuccessCelebration({
                     top: `${Math.random() * 100}%`,
                     left: `${Math.random() * 100}%`,
                     animationDelay: `${i * 0.2}s`,
-                    animationDuration: '1.5s',
+                    animationDuration: "1.5s",
                   }}
                 />
               ))}
@@ -100,44 +99,46 @@ export default function SuccessCelebration({
           </div>
 
           {/* Success Card */}
-          <div className={`
+          <div
+            className={`
             card bg-white shadow-2xl
             transform transition-all duration-500 delay-200
-            ${isVisible ? 'translate-y-0' : 'translate-y-8'}
-          `}>
+            ${isVisible ? "translate-y-0" : "translate-y-8"}
+          `}
+          >
             <div className="card-body text-center">
               <h2 className="card-title text-2xl justify-center text-green-600 mb-2">
                 {title}
               </h2>
-              <p className="text-gray-600 mb-6">
-                {message}
-              </p>
-              
+              <p className="text-gray-600 mb-6">{message}</p>
+
               {/* Animated Checkmark */}
               <div className="flex justify-center mb-4">
-                <div className={`
+                <div
+                  className={`
                   w-16 h-16 rounded-full bg-green-100 flex items-center justify-center
                   transform transition-all duration-700 delay-300
-                  ${isVisible ? 'scale-100' : 'scale-0'}
-                `}>
-                  <svg 
-                    className="w-8 h-8 text-green-600" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  ${isVisible ? "scale-100" : "scale-0"}
+                `}
+                >
+                  <svg
+                    className="w-8 h-8 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth="3" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
                       d="M5 13l4 4L19 7"
                       className={`
-                        ${isVisible ? 'animate-draw-check' : ''}
+                        ${isVisible ? "animate-draw-check" : ""}
                       `}
                       style={{
-                        strokeDasharray: '20',
-                        strokeDashoffset: isVisible ? '0' : '20',
-                        transition: 'stroke-dashoffset 0.5s ease-in-out 0.5s'
+                        strokeDasharray: "20",
+                        strokeDashoffset: isVisible ? "0" : "20",
+                        transition: "stroke-dashoffset 0.5s ease-in-out 0.5s",
                       }}
                     />
                   </svg>
@@ -145,12 +146,12 @@ export default function SuccessCelebration({
               </div>
 
               <div className="card-actions justify-center">
-                <button 
+                <button
                   onClick={handleClose}
                   className={`
                     btn btn-primary btn-wide
                     transform transition-all duration-500 delay-500
-                    ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
+                    ${isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}
                   `}
                 >
                   Weiter

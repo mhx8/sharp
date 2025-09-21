@@ -12,20 +12,20 @@ interface BudgetFormData {
 
 async function addBudget(formData: BudgetFormData) {
   "use server";
-  
+
   try {
     const tableService = getAzureTableService();
-    
+
     // Validation
     if (!formData.preferredBudget || formData.preferredBudget <= 0) {
       throw new Error("Bitte geben Sie ein gültiges Budget ein");
     }
-    
+
     await tableService.addBudget({
       name: formData.name || undefined,
       preferredBudget: formData.preferredBudget,
     });
-    
+
     revalidatePath("/budget");
   } catch (error) {
     console.error("Error adding budget:", error);
@@ -40,7 +40,6 @@ export default function BudgetPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
-
           <div className="flex gap-2 mt-4 sm:mt-0">
             <Link href="/" className="btn btn-ghost">
               ← Zurück zur Startseite

@@ -41,12 +41,12 @@ export default function IdeaDisplay({ ideas }: IdeaDisplayProps) {
                     </div>
                     {idea.timestamp && (
                       <div className="text-xs opacity-60">
-                        {new Date(idea.timestamp).toLocaleDateString('de-DE', {
-                          day: '2-digit',
-                          month: '2-digit',
-                          year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
+                        {new Date(idea.timestamp).toLocaleDateString("de-DE", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
                         })}
                       </div>
                     )}
