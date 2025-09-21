@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'standalone',
+  // Ensure API routes work properly in Azure Static Web Apps
+  trailingSlash: false,
 };
 
 export default nextConfig;
