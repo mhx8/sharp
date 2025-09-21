@@ -1,45 +1,5 @@
 import Link from "next/link";
-import { Suspense } from "react";
-import { revalidatePath } from "next/cache";
-import { getAzureTableService } from "@/lib/azure-table-service";
 import IdeasContent from "../components/IdeasContent";
-import { IdeasSkeleton } from "../components/LoadingSkeletons";
-
-interface IdeaFormData {
-  name: string;
-  idea: string;
-}
-
-async function addIdea(formData: IdeaFormData) {
-  "use server";
-
-  try {
-    const tableService = getAzureTableService();
-
-    // Validation
-    if (!formData.name?.trim()) {
-      throw new Error("Bitte geben Sie Ihren Namen ein");
-    }
-
-    if (!formData.idea?.trim()) {
-      throw new Error("Bitte geben Sie eine Idee ein");
-    }
-
-    if (formData.idea.trim().length < 10) {
-      throw new Error("Die Idee sollte mindestens 10 Zeichen lang sein");
-    }
-
-    await tableService.addIdea({
-      name: formData.name.trim(),
-      idea: formData.idea.trim(),
-    });
-
-    revalidatePath("/ideas");
-  } catch (error) {
-    console.error("Error adding idea:", error);
-    throw error;
-  }
-}
 
 export default function IdeasPage() {
   return (
@@ -55,9 +15,7 @@ export default function IdeasPage() {
           </div>
         </div>
 
-        <Suspense fallback={<IdeasSkeleton />}>
-          <IdeasContent addIdea={addIdea} />
-        </Suspense>
+        <IdeasContent />
       </div>
     </div>
   );

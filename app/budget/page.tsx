@@ -1,37 +1,5 @@
 import Link from "next/link";
-import { Suspense } from "react";
-import { revalidatePath } from "next/cache";
-import { getAzureTableService } from "@/lib/azure-table-service";
 import BudgetContent from "../components/BudgetContent";
-import { BudgetSkeleton } from "../components/LoadingSkeletons";
-
-interface BudgetFormData {
-  preferredBudget: number;
-  name?: string;
-}
-
-async function addBudget(formData: BudgetFormData) {
-  "use server";
-
-  try {
-    const tableService = getAzureTableService();
-
-    // Validation
-    if (!formData.preferredBudget || formData.preferredBudget <= 0) {
-      throw new Error("Bitte geben Sie ein gültiges Budget ein");
-    }
-
-    await tableService.addBudget({
-      name: formData.name || undefined,
-      preferredBudget: formData.preferredBudget,
-    });
-
-    revalidatePath("/budget");
-  } catch (error) {
-    console.error("Error adding budget:", error);
-    throw error;
-  }
-}
 
 export default function BudgetPage() {
   return (
@@ -47,9 +15,7 @@ export default function BudgetPage() {
           </div>
         </div>
 
-        <Suspense fallback={<BudgetSkeleton />}>
-          <BudgetContent addBudget={addBudget} />
-        </Suspense>
+        <BudgetContent />
       </div>
     </div>
   );
