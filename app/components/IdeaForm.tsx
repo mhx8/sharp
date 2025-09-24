@@ -111,6 +111,7 @@ export default function IdeaForm({ addIdea }: IdeaFormProps) {
       {showCelebration && (
         <SuccessCelebration
           show={showCelebration}
+          type="idea"
           onClose={handleCelebrationClose}
         />
       )}

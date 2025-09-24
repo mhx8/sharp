@@ -167,12 +167,11 @@ export default function BudgetForm({ onSubmit }: BudgetFormProps) {
       {hasSubmitted ? submittedContent : budgetForm}
       <SuccessCelebration
         show={showCelebration}
+        type="budget"
         onClose={() => {
           setShowCelebration(false);
           setHasSubmitted(true);
         }}
-        title="Herzlichen Glückwunsch! 🎉"
-        message="Ihr Budget wurde erfolgreich eingereicht!"
       />
     </>
   );

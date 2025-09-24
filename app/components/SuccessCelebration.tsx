@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 interface SuccessCelebrationProps {
   show: boolean;
   onClose: () => void;
+  type?: 'budget' | 'idea';
   title?: string;
   message?: string;
 }
@@ -12,9 +13,32 @@ interface SuccessCelebrationProps {
 export default function SuccessCelebration({
   show,
   onClose,
-  title = "Herzlichen Glückwunsch! 🎉",
-  message = "Ihr Budget wurde erfolgreich eingereicht!",
+  type = 'budget',
+  title,
+  message,
 }: SuccessCelebrationProps) {
+  // Get default content based on type
+  const getDefaultContent = () => {
+    if (type === 'budget') {
+      return {
+        title: "Budget erfolgreich hinzugefügt! 💰",
+        message: "Ihr Budget wurde erfolgreich zur Sammlung hinzugefügt!",
+        image: "/budget.jpeg",
+        alt: "Budget Success"
+      };
+    } else {
+      return {
+        title: "Idee erfolgreich geteilt! 💡",
+        message: "Ihre Idee wurde erfolgreich zur Sammlung hinzugefügt!",
+        image: "/sucess.avif",
+        alt: "Idea Success"
+      };
+    }
+  };
+
+  const defaultContent = getDefaultContent();
+  const displayTitle = title || defaultContent.title;
+  const displayMessage = message || defaultContent.message;
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -68,8 +92,8 @@ export default function SuccessCelebration({
             `}
             >
               <img
-                src="/sucess.avif"
-                alt="Success Celebration"
+                src={defaultContent.image}
+                alt={defaultContent.alt}
                 className="w-48 h-48 object-cover rounded-full shadow-2xl animate-bounce"
                 style={{
                   animationDuration: "1s",
@@ -108,9 +132,9 @@ export default function SuccessCelebration({
           >
             <div className="card-body text-center">
               <h2 className="card-title text-2xl justify-center text-green-600 mb-2">
-                {title}
+                {displayTitle}
               </h2>
-              <p className="text-gray-600 mb-6">{message}</p>
+              <p className="text-gray-600 mb-6">{displayMessage}</p>
 
               {/* Animated Checkmark */}
               <div className="flex justify-center mb-4">
